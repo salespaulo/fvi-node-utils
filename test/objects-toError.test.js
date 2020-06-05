@@ -18,7 +18,7 @@ const testReturns = (returns, code, type, msg) => {
     chai.assert.equal(msg, returns.message, `Error message is not ${msg}!`)
 }
 
-describe(`Objects Utils - require('i-node-utils/app/object') - toErrorStack and toErrorTrace:`, () => {
+describe(`Objects Utils - require('fvi-node-utils/app/object') - toErrorStack and toErrorTrace:`, () => {
     describe('Testing toErrorStack(error: Error)', () => {
         it('Testing { } toError - OK', done => {
             try {

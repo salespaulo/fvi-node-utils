@@ -1,1 +1,1 @@
-declare module 'i-node-utils'
+declare module 'fvi-node-utils'

@@ -4,7 +4,7 @@ const debug = require('debug')
 const path = require('path')
 
 /*
-module.exports.default = debug('i-node-utils')
+module.exports.default = debug('fvi-node-utils')
 module.exports = debug
 */
 

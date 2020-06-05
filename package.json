@@ -1,7 +1,7 @@
 {
-    "name": "i-node-utils",
+    "name": "fvi-node-utils",
     "version": "0.2.0",
-    "description": "Intelligir - Node Utilities on objects, arrays, string ...",
+    "description": "FVI - Node Utilities on objects, arrays, string ...",
     "main": "app/index.js",
     "prettier": "i-prettier-config",
     "publishConfig": {
@@ -35,11 +35,11 @@
         "sugar",
         "voca"
     ],
-    "repository": "//git-codecommit.us-east-1.amazonaws.com/v1/repos/i-node-utils",
+    "repository": "//git-codecommit.us-east-1.amazonaws.com/v1/repos/fvi-node-utils",
     "author": {
-        "name": "Intelligir",
-        "email": "tech@intelligir.com",
-        "twitter": "@intelligir"
+        "name": "FVI",
+        "email": "tech@fvi.com",
+        "twitter": "@fvi"
     },
     "license": "MIT",
     "dependencies": {
