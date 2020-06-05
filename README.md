@@ -1,4 +1,4 @@
-# i-node-utils
+# fvi-node-utils
 
 -   `npm run compile`: Executa a limpeza dos arquivos e diretorios.
 -   `npm run debug-test`: Executa os testes unitários com o DEBUG ativo.
@@ -12,9 +12,9 @@
 -   `npm run release:major`: Inicia uma nova release de versão incrementando o **major**, [git flow](https://github.com/nvie/gitflow/) release start.
 -   `npm run release:finish`: Finaliza a release, ou seja, realiza o [git flow](https://github.com/nvie/gitflow/) release finish.
 
-## Intelligir - Node Utilities
+## FVI - Node Utilities
 
-Biblioteca intelligir de funções e bibliotecas utilitárias para programação em Node.js.
+Biblioteca fvi de funções e bibliotecas utilitárias para programação em Node.js.
 
 ### Core Utilities
 
@@ -29,7 +29,7 @@ const {
     blocked,
     arrays,
     objects,
-} = require('i-node-utils')
+} = require('fvi-node-utils')
 ```
 
 -   **sugar**: [sugar.js](https://sugarjs.com/)
@@ -57,7 +57,7 @@ const {
     IS_LOCAL,
     IS_STAG,
     IS_PROD,
-} = require('i-node-utils/app/env)
+} = require('fvi-node-utils/app/env)
 ```
 
 -   **DEVELOPMENT**: Constanten que representa a `String` _development_.
@@ -82,7 +82,7 @@ const {
     arrayToBase64,
     arrayToJson,
     collect,
-} = require('i-node-utils/app/arrays)
+} = require('fvi-node-utils/app/arrays)
 ```
 
 -   **chunck(xs: array, limit: int)**: `chunk([1, 2, 3, 4, 5], 2)` resultado `[[1, 2], [3, 4], 5]`.
@@ -105,7 +105,7 @@ const {
     toError,
     toErrorStack,
     joi,
-} = require('i-node-utils/app/objects')
+} = require('fvi-node-utils/app/objects')
 ```
 
 -   **joi**: [joi.js](https://github.com/hapijs/joi#readme)

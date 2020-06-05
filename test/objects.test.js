@@ -5,7 +5,7 @@ const util = require('util')
 
 const { inspect, toConfig, isConfig, throwsIfNotConfig } = require('../app/objects')
 
-describe(`Objects Utils - require('i-node-utils/app/object'):`, () => {
+describe(`Objects Utils - require('fvi-node-utils/app/object'):`, () => {
     describe('Testing method inspect(obj: Object)', () => {
         it('inspect - OK', done => {
             chai.assert(inspect({ test: 'testIt' }) === util.inspect({ test: 'testIt' }))

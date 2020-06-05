@@ -1,12 +1,9 @@
 {
-    "name": "i-node-utils",
-    "version": "0.2.0",
-    "description": "Intelligir - Node Utilities on objects, arrays, string ...",
+    "name": "fvi-node-utils",
+    "version": "0.0.1",
+    "description": "FVI - Node Utilities on objects, arrays, string ...",
     "main": "app/index.js",
-    "prettier": "i-prettier-config",
-    "publishConfig": {
-        "registry": "http://ec2-34-230-6-254.compute-1.amazonaws.com:4873"
-    },
+    "prettier": "fvi-prettier-config",
     "scripts": {
         "compile": "grunt compile",
         "test": "grunt test",
@@ -35,11 +32,11 @@
         "sugar",
         "voca"
     ],
-    "repository": "//git-codecommit.us-east-1.amazonaws.com/v1/repos/i-node-utils",
+    "repository": "https://github.com/salespaulo/fvi-node-utils.git",
     "author": {
-        "name": "Intelligir",
-        "email": "tech@intelligir.com",
-        "twitter": "@intelligir"
+        "name": "FVI",
+        "email": "tech@fvi.com",
+        "twitter": "@fvi"
     },
     "license": "MIT",
     "dependencies": {
@@ -67,7 +64,7 @@
         "grunt-nodemon": "^0.4.2",
         "grunt-notify": "^0.4.5",
         "grunt-shell": "^3.0.1",
-        "i-prettier-config": "^1.0.2",
+        "fvi-prettier-config": "^0.0.1",
         "load-grunt-tasks": "^5.0.1",
         "i-axios-client": "^0.0.7",
         "mocha": "^7.0.1"
