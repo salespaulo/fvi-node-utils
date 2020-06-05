@@ -1,0 +1,75 @@
+{
+    "name": "i-node-utils",
+    "version": "0.2.0",
+    "description": "Intelligir - Node Utilities on objects, arrays, string ...",
+    "main": "app/index.js",
+    "prettier": "i-prettier-config",
+    "publishConfig": {
+        "registry": "http://ec2-34-230-6-254.compute-1.amazonaws.com:4873"
+    },
+    "scripts": {
+        "compile": "grunt compile",
+        "test": "grunt test",
+        "debug-test": "grunt debug-test",
+        "dev": "grunt dev",
+        "debug-dev": "grunt debug-dev",
+        "prod": "grunt prod",
+        "release": "grunt version && grunt release",
+        "release:minor": "grunt version:minor && grunt release:minor",
+        "release:major": "grunt version:major && grunt release:major",
+        "release:finish": "grunt release:finish",
+        "coverage": "npx nyc@latest npm run test"
+    },
+    "keywords": [
+        "node",
+        "utils",
+        "debug",
+        "joi",
+        "blocked",
+        "collect.js",
+        "convict",
+        "dotenv-safe",
+        "pino",
+        "pino-pretty",
+        "stacktrace-js",
+        "sugar",
+        "voca"
+    ],
+    "repository": "//git-codecommit.us-east-1.amazonaws.com/v1/repos/i-node-utils",
+    "author": {
+        "name": "Intelligir",
+        "email": "tech@intelligir.com",
+        "twitter": "@intelligir"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "@hapi/joi": "^17.1.0",
+        "blocked": "^1.3.0",
+        "collect.js": "^4.20.3",
+        "convict": "^5.2.0",
+        "debug": "^4.1.1",
+        "dotenv-safe": "^8.2.0",
+        "pino": "^5.16.0",
+        "pino-pretty": "^3.6.0",
+        "stacktrace-js": "^2.0.2",
+        "sugar": "^2.0.6",
+        "voca": "^1.4.0"
+    },
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "grunt": "^1.0.4",
+        "grunt-concurrent": "^3.0.0",
+        "grunt-contrib-clean": "^2.0.0",
+        "grunt-contrib-compress": "^1.6.0",
+        "grunt-contrib-watch": "^1.1.0",
+        "grunt-env": "^1.0.1",
+        "grunt-mocha-test": "^0.13.3",
+        "grunt-nodemon": "^0.4.2",
+        "grunt-notify": "^0.4.5",
+        "grunt-shell": "^3.0.1",
+        "i-prettier-config": "^1.0.2",
+        "load-grunt-tasks": "^5.0.1",
+        "i-axios-client": "^0.0.7",
+        "mocha": "^7.0.1"
+    }
+}
