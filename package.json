@@ -1,6 +1,6 @@
 {
     "name": "fvi-node-utils",
-    "version": "0.2.0",
+    "version": "0.0.0",
     "description": "FVI - Node Utilities on objects, arrays, string ...",
     "main": "app/index.js",
     "prettier": "i-prettier-config",
