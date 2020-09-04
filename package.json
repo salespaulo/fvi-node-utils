@@ -3,6 +3,12 @@
     "version": "0.0.3",
     "description": "FVI - Node Utilities on objects, arrays, string ...",
     "main": "index.js",
+    "module": "src/index.js",
+    "browserslist": "> 0.25%, not dead",
+    "files": [
+        "dist/*",
+        "src/*"
+    ],
     "prettier": "fvi-prettier-config",
     "scripts": {
         "compile": "grunt compile",
@@ -66,7 +72,6 @@
         "grunt-shell": "^3.0.1",
         "fvi-prettier-config": "^0.0.1",
         "load-grunt-tasks": "^5.0.1",
-        "fvi-axios-client": "^0.0.10",
         "mocha": "^7.0.1"
     }
 }
