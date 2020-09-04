@@ -3,9 +3,9 @@
 const chai = require('chai')
 const util = require('util')
 
-const axios = require('i-axios-client')
+const axios = require('fvi-axios-client')
 
-const { inspect, toErrorStack, toErrorTrace } = require('../app/objects')
+const { inspect, toErrorStack, toErrorTrace } = require('../src/objects')
 
 const testReturns = (returns, code, type, msg) => {
     chai.assert.exists(returns, 'Error is null!')

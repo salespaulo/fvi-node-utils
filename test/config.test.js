@@ -1,7 +1,7 @@
 'use strict'
 
 const chai = require('chai')
-const app = require('../app')
+const app = require('../src')
 
 describe('Convict library - Config Encapsulates', () => {
     it('Config loading defaultConfigDir unknown', done => {

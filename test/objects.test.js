@@ -3,7 +3,7 @@
 const chai = require('chai')
 const util = require('util')
 
-const { inspect, toConfig, isConfig, throwsIfNotConfig } = require('../app/objects')
+const { inspect, toConfig, isConfig, throwsIfNotConfig } = require('../src/objects')
 
 describe(`Objects Utils - require('fvi-node-utils/app/object'):`, () => {
     describe('Testing method inspect(obj: Object)', () => {

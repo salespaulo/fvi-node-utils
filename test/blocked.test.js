@@ -1,7 +1,7 @@
 'use strict'
 
 const chai = require('chai')
-const app = require('../app')
+const app = require('../src')
 
 describe('Blocked library', () => {
     it('is OK?', done => {
