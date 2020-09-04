@@ -1,16 +1,13 @@
 'use strict'
 
-const app = require('../app')
+const app = require('../src')
 
 describe('Joi Library - Object Utilities', () => {
     it('Load library is OK?', done => {
         const Joi = app.objects.joi
         const memberSchema = Joi.object().keys({
             password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
-            birthyear: Joi.number()
-                .integer()
-                .min(1900)
-                .max(2013),
+            birthyear: Joi.number().integer().min(1900).max(2013),
             email: Joi.string().email(),
         })
 

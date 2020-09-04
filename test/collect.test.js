@@ -1,7 +1,7 @@
 'use strict'
 
 const chai = require('chai')
-const app = require('../app')
+const app = require('../src')
 
 describe('Collect.js library - Array Utilities', () => {
     it('Collect.avg is OK?', done => {

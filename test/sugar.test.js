@@ -1,7 +1,7 @@
 'use strict'
 
 const chai = require('chai')
-const app = require('../app')
+const app = require('../src')
 
 describe('Sugar Library', () => {
     it('Array.unique()', done => {

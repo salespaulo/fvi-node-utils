@@ -1,7 +1,7 @@
 'use strict'
 
 const chai = require('chai')
-const app = require('../app')
+const app = require('../src')
 
 describe('Pino Logger Library is OK?', () => {
     it('Load library is OK?', done => {

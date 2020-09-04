@@ -2,32 +2,17 @@
 
 var path = require('path')
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     var pkg = grunt.file.readJSON('package.json')
 
     var paths = {
-        app: path.join(path.resolve(), '/app'),
+        app: path.join(path.resolve(), '/src'),
         test: path.join(path.resolve(), '/test/**/*.js'),
     }
 
-    var notify = {
-        test: {
-            options: {
-                title: pkg.name + ': Test',
-                message: 'Finished!',
-            },
-        },
-        success: {
-            options: {
-                title: pkg.name + ': Success',
-                message: '## Already! ##',
-            },
-        },
-    }
-
     var shell = {
-        exec: {
-            command: 'node app',
+        babel: {
+            command: 'npx babel src --out-dir dist',
         },
         verpatch: {
             command:
@@ -54,6 +39,7 @@ module.exports = function(grunt) {
 
     var clean = {
         src: [
+            path.resolve() + '/dist',
             path.resolve() + '/*.log',
             path.resolve() + '/*.txt',
             path.resolve() + '/*.zip',
@@ -73,36 +59,9 @@ module.exports = function(grunt) {
     }
 
     var watch = {
-        debug: {
-            files: ['<%= paths.app %>/**/*.js', '<%= paths.test %>'],
-            tasks: ['env:debugtest', 'mochaTest', 'env:debugdev'],
-        },
         js: {
             files: ['<%= paths.app %>/**/*.js', '<%= paths.test %>'],
-            tasks: ['env:test', 'mochaTest', 'env:dev'],
-        },
-    }
-
-    var nodemon = {
-        default: {
-            script: '<%= paths.app %>/index.js',
-            options: {
-                cwd: path.resolve(),
-                watch: ['<%= paths.app %>'],
-                ignore: ['node_modules'],
-            },
-        },
-    }
-
-    var concurrent = {
-        debug: {
-            tasks: ['nodemon', 'watch:debug'],
-        },
-        default: {
-            tasks: ['nodemon', 'watch:js'],
-        },
-        options: {
-            logConcurrentOutput: true,
+            tasks: ['mochaTest'],
         },
     }
 
@@ -125,33 +84,35 @@ module.exports = function(grunt) {
             },
         },
         mochaTest: mochaTest,
-        notify: notify,
         shell: shell,
         paths: paths,
         clean: clean,
         watch: watch,
-        nodemon: nodemon,
-        concurrent: concurrent,
     })
 
     require('load-grunt-tasks')(grunt)
 
     grunt.registerTask('compile', ['clean'])
 
-    grunt.registerTask('test', ['env:test', 'compile', 'mochaTest', 'notify:test'])
-    grunt.registerTask('debug-test', ['env:debugtest', 'compile', 'mochaTest', 'notify:test'])
+    grunt.registerTask('test', ['env:test', 'compile', 'mochaTest'])
+    grunt.registerTask('debug-test', ['env:debugtest', 'compile', 'mochaTest'])
 
-    grunt.registerTask('dev', ['compile', 'env:dev', 'notify:success', 'watch:js'])
-    grunt.registerTask('debug-dev', ['compile', 'env:debugdev', 'notify:success', 'watch:debug'])
+    grunt.registerTask('dev', ['compile', 'env:dev', 'watch:js'])
+    grunt.registerTask('debug-dev', ['compile', 'env:debugdev', 'watch:js'])
 
-    grunt.registerTask('default', ['test', 'env:dev', 'notify:success', 'nodemon'])
+    grunt.registerTask('default', ['compile', 'env:dev'])
+
+    grunt.registerTask('build', ['shell:babel'])
 
     grunt.registerTask('version', ['shell:verpatch'])
     grunt.registerTask('version:minor', ['shell:verminor'])
     grunt.registerTask('version:major', ['shell:vermajor'])
 
-    grunt.registerTask('deploy', ['test', 'shell:deploy'])
-
-    grunt.registerTask('release', ['test', 'shell:gitflowrelease', 'notify:success'])
-    grunt.registerTask('release:finish', ['shell:gitflowreleasefinish', 'deploy', 'notify:success'])
+    grunt.registerTask('release', ['test', 'build', 'shell:gitflowrelease'])
+    grunt.registerTask('release:finish', [
+        'test',
+        'build',
+        'shell:gitflowreleasefinish',
+        'shell:deploy',
+    ])
 }
