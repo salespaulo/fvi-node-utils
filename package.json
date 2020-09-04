@@ -1,6 +1,6 @@
 {
     "name": "fvi-node-utils",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "FVI - Node Utilities on objects, arrays, string ...",
     "main": "index.js",
     "module": "src/index.js",
