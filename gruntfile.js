@@ -14,6 +14,9 @@ module.exports = function (grunt) {
         babel: {
             command: 'npx babel src --out-dir dist',
         },
+        exec: {
+            command: 'node app',
+        },
         verpatch: {
             command:
                 'npm version --no-git-tag-version patch && git add -A && git commit -a -m "Version Patch Updated"',
@@ -59,12 +62,15 @@ module.exports = function (grunt) {
     }
 
     var watch = {
+        debug: {
+            files: ['<%= paths.app %>/**/*.js', '<%= paths.test %>'],
+            tasks: ['compile', 'env:debugtest', 'mochaTest', 'env:debugdev'],
+        },
         js: {
             files: ['<%= paths.app %>/**/*.js', '<%= paths.test %>'],
-            tasks: ['mochaTest'],
+            tasks: ['compile', 'env:test', 'mochaTest', 'env:dev'],
         },
     }
-
     grunt.initConfig({
         pkg: pkg,
         env: {
@@ -98,21 +104,17 @@ module.exports = function (grunt) {
     grunt.registerTask('debug-test', ['env:debugtest', 'compile', 'mochaTest'])
 
     grunt.registerTask('dev', ['compile', 'env:dev', 'watch:js'])
-    grunt.registerTask('debug-dev', ['compile', 'env:debugdev', 'watch:js'])
+    grunt.registerTask('debug-dev', ['compile', 'env:debugdev', 'watch:debug'])
 
-    grunt.registerTask('default', ['compile', 'env:dev'])
-
-    grunt.registerTask('build', ['shell:babel'])
+    grunt.registerTask('default', ['test', 'env:dev'])
 
     grunt.registerTask('version', ['shell:verpatch'])
     grunt.registerTask('version:minor', ['shell:verminor'])
     grunt.registerTask('version:major', ['shell:vermajor'])
 
+    grunt.registerTask('build', ['shell:babel'])
+    grunt.registerTask('deploy', ['test', 'build', 'shell:deploy'])
+
     grunt.registerTask('release', ['test', 'build', 'shell:gitflowrelease'])
-    grunt.registerTask('release:finish', [
-        'test',
-        'build',
-        'shell:gitflowreleasefinish',
-        'shell:deploy',
-    ])
+    grunt.registerTask('release:finish', ['shell:gitflowreleasefinish', 'deploy'])
 }

@@ -3,8 +3,6 @@
 const chai = require('chai')
 const util = require('util')
 
-const axios = require('fvi-axios-client')
-
 const { inspect, toErrorStack, toErrorTrace } = require('../src/objects')
 
 const testReturns = (returns, code, type, msg) => {
@@ -72,93 +70,6 @@ describe(`Objects Utils - require('fvi-node-utils/app/object') - toErrorStack an
             } catch (e) {
                 done(e)
             }
-        })
-
-        it('Testing i-axios-client reply status=400 toError - OK', done => {
-            const instance = axios({ url: 'http://', mock: true })
-            instance.mock.onGet('/testIt').reply(400)
-
-            instance
-                .get('/testIt')
-                .then(_res => {
-                    done(`Should be throws error!`)
-                })
-                .catch(e => {
-                    const returns = toErrorStack(e)
-                    try {
-                        testReturns(returns, 400, 'http_response', `${inspect(e.response.data)}`)
-                        done()
-                    } catch (e) {
-                        done(e)
-                    }
-                })
-        })
-
-        it('Testing i-axios-client reply status=500 toError - OK', done => {
-            const instance = axios({ url: 'http://', mock: true })
-            instance.mock
-                .onGet('/testIt')
-                .reply(500, { error: new Error('Response error mocked!') })
-
-            instance
-                .get('/testIt')
-                .then(_res => {
-                    done(`Should be throws error!`)
-                })
-                .catch(e => {
-                    const returns = toErrorStack(e)
-                    try {
-                        testReturns(returns, 500, 'http_response', `${inspect(e.response.data)}`)
-                        done()
-                    } catch (e) {
-                        done(e)
-                    }
-                })
-        })
-
-        it('Testing i-axios-client reply status=404 toError - OK', done => {
-            const instance = axios({ url: 'http://', mock: true })
-
-            instance
-                .get('/testIt')
-                .then(_res => {
-                    done(`Should be throws error!`)
-                })
-                .catch(e => {
-                    const returns = toErrorStack(e)
-                    try {
-                        testReturns(returns, 404, 'http_response', `${inspect(e.response.data)}`)
-                        done()
-                    } catch (e) {
-                        done(e)
-                    }
-                })
-        })
-
-        it('Testing i-axios-client not reply toError - OK', done => {
-            const instance = axios({ url: 'http://', mock: false })
-
-            instance
-                .get('/testIt')
-                .then(_res => {
-                    done(`Should be throws error!`)
-                })
-                .catch(e => {
-                    const returns = toErrorStack(e)
-                    try {
-                        testReturns(
-                            returns,
-                            421,
-                            'http_request',
-                            `Misdirected Request (RFC 7540) - Server Not Responding: Unavailable request=${inspect(
-                                e.request
-                            )}`
-                        )
-                        done()
-                    } catch (e) {
-                        done(e)
-                    }
-                })
         })
 
         it('Testing new Error() toError OK', done => {
