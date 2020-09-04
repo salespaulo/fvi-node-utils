@@ -1,13 +1,8 @@
 {
     "name": "fvi-node-utils",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "FVI - Node Utilities on objects, arrays, string ...",
-    "main": "dist/index.js",
-    "module": "src/index.js",
-    "files": [
-        "dist/*",
-        "src/*"
-    ],
+    "main": "src/index.js",
     "prettier": "fvi-prettier-config",
     "scripts": {
         "compile": "grunt compile",
