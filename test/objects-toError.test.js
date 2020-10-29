@@ -1,9 +1,8 @@
 'use strict'
 
 const chai = require('chai')
-const util = require('util')
 
-const { inspect, toErrorStack, toErrorTrace } = require('../src/objects')
+const { toErrorStack, toErrorTrace } = require('../src/objects')
 
 const testReturns = (returns, code, type, msg) => {
     chai.assert.exists(returns, 'Error is null!')
@@ -21,7 +20,7 @@ describe(`Objects Utils - require('fvi-node-utils/app/object') - toErrorStack an
         it('Testing { } toError - OK', done => {
             try {
                 const returns = toErrorStack({})
-                testReturns(returns, 520, 'unknown_error', `Unknown Error=${inspect({})}`)
+                testReturns(returns, 520, 'unknown_error', `Unknown Error=${JSON.stringify({})}`)
                 done()
             } catch (e) {
                 done(e)
@@ -32,7 +31,7 @@ describe(`Objects Utils - require('fvi-node-utils/app/object') - toErrorStack an
             try {
                 const input = { unknown: 'unknown' }
                 const returns = toErrorStack(input)
-                testReturns(returns, 520, 'unknown_error', `Unknown Error=${inspect(input)}`)
+                testReturns(returns, 520, 'unknown_error', `Unknown Error=${JSON.stringify(input)}`)
                 done()
             } catch (e) {
                 done(e)
@@ -43,7 +42,7 @@ describe(`Objects Utils - require('fvi-node-utils/app/object') - toErrorStack an
             try {
                 const input = { status: 200, unknown: 'unknown' }
                 const returns = toErrorStack(input)
-                testReturns(returns, 520, 'unknown_error', `Unknown Error=${inspect(input)}`)
+                testReturns(returns, 520, 'unknown_error', `Unknown Error=${JSON.stringify(input)}`)
                 done()
             } catch (e) {
                 done(e)
@@ -54,7 +53,7 @@ describe(`Objects Utils - require('fvi-node-utils/app/object') - toErrorStack an
             try {
                 const input = { status: 500, unknown: 'unknown' }
                 const returns = toErrorStack(input)
-                testReturns(returns, 520, 'unknown_error', `Unknown Error=${inspect(input)}`)
+                testReturns(returns, 520, 'unknown_error', `Unknown Error=${JSON.stringify(input)}`)
                 done()
             } catch (e) {
                 done(e)
@@ -65,7 +64,7 @@ describe(`Objects Utils - require('fvi-node-utils/app/object') - toErrorStack an
             try {
                 const input = { status: 400, unknown: 'unknown' }
                 const returns = toErrorStack(input)
-                testReturns(returns, 520, 'unknown_error', `Unknown Error=${inspect(input)}`)
+                testReturns(returns, 520, 'unknown_error', `Unknown Error=${JSON.stringify(input)}`)
                 done()
             } catch (e) {
                 done(e)
@@ -77,7 +76,7 @@ describe(`Objects Utils - require('fvi-node-utils/app/object') - toErrorStack an
                 const msg = `ERROR Testing toError!`
                 const error = new Error(msg)
                 const returns = toErrorStack(error)
-                testReturns(returns, 500, 'error', inspect(error))
+                testReturns(returns, 500, 'error', JSON.stringify(error))
                 done()
             } catch (e) {
                 done(e)
@@ -95,7 +94,7 @@ describe(`Objects Utils - require('fvi-node-utils/app/object') - toErrorStack an
                     },
                 }
                 const returns = toErrorStack(error)
-                testReturns(returns, 404, 'http_response', util.inspect(data))
+                testReturns(returns, 404, 'http_response', JSON.stringify(data))
                 done()
             } catch (e) {
                 done(e)
@@ -131,7 +130,7 @@ describe(`Objects Utils - require('fvi-node-utils/app/object') - toErrorStack an
             const error = new Error(msg)
             toErrorTrace(error)
                 .then(returns => {
-                    testReturns(returns, 500, 'error', inspect(error))
+                    testReturns(returns, 500, 'error', JSON.stringify(error))
 
                     done()
                 })
@@ -149,7 +148,7 @@ describe(`Objects Utils - require('fvi-node-utils/app/object') - toErrorStack an
             }
             toErrorTrace(error)
                 .then(returns => {
-                    testReturns(returns, 404, 'http_response', util.inspect(data))
+                    testReturns(returns, 404, 'http_response', JSON.stringify(data))
                     done()
                 })
                 .catch(done)
