@@ -21,7 +21,7 @@ const toConfig = obj => {
         config.load(obj)
         return config
     } catch (e) {
-        throw toErrorStack(e, log => debug.here(`Invalid Config: error=${inspect(log)}`))
+        throw toErrorStack(e, log => debug.here(`Invalid Config: error=${JSON.stringify(log)}`))
     }
 }
 
@@ -43,7 +43,7 @@ const throwsIfNotConfig = obj => {
 
     if (!isObjLikeIConfig) {
         const e = new Error(
-            `Invalid Config: Is null or Not implements { get()|has()|getProperties() }. Invalid obj=${inspect(
+            `Invalid Config: Is null or Not implements { get()|has()|getProperties() }. Invalid obj=${JSON.stringify(
                 obj
             )}`
         )
@@ -118,7 +118,7 @@ const toErrorStack = (error, cb = null) => {
         const eresponse = error.response
         const code = eresponse.status
         const type = 'http_response'
-        const message = inspect(eresponse.data)
+        const message = JSON.stringify(eresponse.data)
 
         return newError({ code, type, message })
     }
@@ -126,7 +126,7 @@ const toErrorStack = (error, cb = null) => {
     if (error.request != null) {
         const code = 421 // 421 - Misdirected Request (RFC 7540)
         const type = 'http_request'
-        const message = `Misdirected Request (RFC 7540) - Server Not Responding: Unavailable request=${inspect(error.request)}`
+        const message = `Misdirected Request (RFC 7540) - Server Not Responding: Unavailable request=${JSON.stringify(error.request)}`
 
         return newError({ code, type, message })
     }
@@ -134,14 +134,14 @@ const toErrorStack = (error, cb = null) => {
     if (error instanceof Error) {
         const code = 500
         const type = 'error'
-        const message = `${inspect(error)}`
+        const message = `${JSON.stringify(error)}`
 
         return newError({ code, type, message })
     }
 
     const code = 520 // Unknown error
     const type = 'unknown_error'
-    const message = `Unknown Error=${inspect(error)}`
+    const message = `Unknown Error=${JSON.stringify(error)}`
 
     return newError({ code, type, message })
 }
