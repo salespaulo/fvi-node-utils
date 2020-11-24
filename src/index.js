@@ -29,7 +29,7 @@ if (env.IS_PROD) {
     })
 
     process.on('SIGINT', p => {
-        debug.here(`SIGINT: Process finish with ${inpect(p)}`)
+        debug.here(`SIGINT: Process finish with ${objects.inpect(p)}`)
     })
 
     process.on('SIGTERM', () => {
