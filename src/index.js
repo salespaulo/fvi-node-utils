@@ -27,14 +27,6 @@ if (env.IS_PROD) {
             debug.here(`uncaughtException:error:${objects.inspect(errorEnhanced)}`)
         })
     })
-
-    process.on('SIGINT', p => {
-        debug.here(`SIGINT: Process finish with ${objects.inpect(p)}`)
-    })
-
-    process.on('SIGTERM', () => {
-        debug.here(`SIGTERM: Process finish with ^C`)
-    })
 }
 
 dotenv.config({
